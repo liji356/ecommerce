@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescripition %}
+    
+        {{product.description|truncatewords:155}}
+   
+{% endblock %}
+<!-- TITLE PART -->
+{% block title %}
+    {% if c_page %}
+        {{product.name}}-MEXIACAN STORE
+{% endif %}
+{% endblock %}
+{% block content %}
+<div>
+    <img class="my_image my_image_padding" src="{% static 'img/banner.png' %}" alt="our Product" width="1250">
+</div>
+<div class="my_product_row_class" >
+    <div class="mx_auto">
+        <p><a href="{% url 'shopapp:productcategory' %}">Home</a>|{{product.name}}</a></p>
+    </div>
+    <div class="container">
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <div style="min-width: 18rem;">
+            <img src="{{product.image.url}}" style="height: 200px;" alt="{{product.name}}">
+        </div>
+    </div>
+    
+    <div class="col-md-12 col-sm-12 col-md-12 col-lg-6">
+        <div>
+            <h1 class="my_product_title">{{product.name}}</h1>
+            <p>${{product.price}}</p>
+            <p class="text-justify my_product_text">{{product.description}}</p>
+            {% if product.stock <= 0 %}
+            <p class="text-justify my_product_text"><b>Out of Stock</b></p>
+            {% else %}
+            <a class="btn btn-secondary" href="{% url 'cart:addcart' product.id %}">Add to Cart</a>
+            {% endif %}
+    </div>
+    </div>
+    </div>
+    </div>
+    
+
+    <style>
+        .footer
+        {
+            background-color: rgb(124, 163, 198);
+            margin-top: 20px;
+            height: 50px;
+            text-align: center;
+        }
+      </style>
+      
+      <div class="footer">
+        <p style="text-align: center; padding-top: 20px;" >CopyRight@ MexicanFood Pvt </p>
+      </div>
+{% endblock %}
